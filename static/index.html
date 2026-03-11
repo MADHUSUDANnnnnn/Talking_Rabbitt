@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking Rabbitt - QSR Intelligence</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
+        }
+        .chat-container {
+            /* Full height minus header and input area */
+            height: calc(100vh - 180px);
+        }
+        /* Custom aesthetics */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scrollbar-hide::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .scrollbar-hide::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden selection:bg-blue-500/30">
+    
+    <!-- Navbar -->
+    <header class="glass-panel p-4 shadow-xl z-10 flex justify-between items-center px-6">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 tracking-tight">Talking Rabbitt</h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">QSR Intelligence Layer</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs py-2 px-4 rounded-lg transition-all text-white font-medium flex items-center gap-2 group">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 group-hover:text-blue-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                Upload CSV
+                <input type="file" id="fileUpload" class="hidden" accept=".csv">
+            </label>
+            <span id="uploadStatus" class="text-xs font-medium text-slate-500 hidden">Uploaded</span>
+        </div>
+    </header>
+
+    <!-- Main Chat Area -->
+    <main class="flex-1 max-w-5xl w-full mx-auto p-4 flex flex-col relative">
+        <div id="chatBox" class="chat-container overflow-y-auto scrollbar-hide flex flex-col gap-6 p-6 rounded-2xl glass-panel flex-1 mb-4 shadow-2xl">
+            
+            <!-- Welcome Bot Message -->
+            <div class="flex gap-4 slide-in">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold flex-shrink-0 shadow-lg shadow-blue-500/20">TR</div>
+                <div class="bg-slate-800/80 p-5 rounded-2xl rounded-tl-none border border-slate-700/50 text-sm leading-relaxed max-w-[85%] shadow-md text-slate-200">
+                    <p class="mb-2"><strong>Welcome to Talking Rabbitt!</strong> 🍕</p>
+                    <p class="text-slate-300">Upload your recent Domino's operations data and ask me anything about your KPIs. I'll provide actionable insights in seconds. No dashboards needed.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Input Area -->
+        <form id="chatForm" class="relative group">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-xl blur-xl transition-opacity opacity-0 group-focus-within:opacity-100 -z-10"></div>
+            <div class="relative flex items-center bg-slate-800 border-slate-700 border rounded-xl overflow-hidden shadow-2xl focus-within:border-blue-500/50 focus-within:ring-1 focus-within:ring-blue-500/50 transition-all">
+                <input type="text" id="userInput" placeholder="Ask about sales, delivery times, or wastage..." class="w-full bg-transparent text-white placeholder-slate-500 py-4 pl-6 pr-16 focus:outline-none text-sm">
+                <button type="submit" class="absolute right-2 top-2 bottom-2 bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white p-2 px-3 rounded-lg transition-all flex items-center justify-center shadow-lg group-hover:shadow-blue-500/25">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform rotate-90" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

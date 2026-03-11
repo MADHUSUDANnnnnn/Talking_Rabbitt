@@ -1,0 +1,13 @@
+Timestamp,Store_Zone,Order_Type,Revenue_INR,Delivery_Time_Mins,Staff_Count,Waste_Dough_KG,Local_Weather,Active_Offer
+10:00,North,Dine-in,1200,12,5,0.2,Sunny,None
+11:00,North,Delivery,2500,22,5,0.1,Sunny,None
+12:00,West,Delivery,5400,28,8,0.5,Sunny,Lunch Special
+13:00,West,Dine-in,8200,15,8,0.3,Sunny,Lunch Special
+14:00,South,Delivery,3100,20,6,0.2,Cloudy,None
+15:00,South,Takeaway,2200,10,6,0.1,Rain,None
+16:00,South,Delivery,9800,42,6,0.4,Rain,BOGO Peak
+16:30,South,Delivery,12500,48,6,0.6,Rain,BOGO Peak
+17:00,East,Dine-in,4500,18,7,0.2,Sunny,None
+18:00,East,Delivery,7800,32,10,0.5,Sunny,Dinner Combo
+19:00,North,Delivery,11200,35,10,0.4,Sunny,Dinner Combo
+20:00,North,Delivery,15400,40,12,0.8,Sunny,Dinner Combo
